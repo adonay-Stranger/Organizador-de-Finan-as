@@ -1,0 +1,19 @@
+rules_version = '2';
+
+// Regras de acesso do banco de dados.
+// Troque os dois e-mails abaixo pelos e-mails de vocês (os mesmos usados
+// ao criar as contas em Authentication). Só essas contas leem e gravam.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function autorizado() {
+      return request.auth != null
+        && request.auth.token.email in [
+          'seu-email@exemplo.com',
+          'email-da-esposa@exemplo.com'
+        ];
+    }
+    match /obras/{caminho=**} {
+      allow read, write: if autorizado();
+    }
+  }
+}

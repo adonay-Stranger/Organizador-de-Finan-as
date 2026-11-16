@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Minha Obra</title>
+  <meta name="description" content="Controle dos gastos da construção da casa: quanto já foi gasto, de onde saiu o dinheiro e quanto falta para a meta.">
+  <meta name="theme-color" content="#2B3A42">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Minha Obra">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="carregando" class="carregando">Carregando…</div>
+
+  <section id="tela-login" class="tela-login" hidden>
+    <form id="form-login" class="login-card" novalidate>
+      <p class="eyebrow">Controle da obra</p>
+      <h1>Entrar</h1>
+      <p class="ajuda">Use a conta criada para você no Firebase. Vocês dois veem os mesmos gastos.</p>
+      <label for="login-email">E-mail</label>
+      <input id="login-email" type="email" autocomplete="username" required>
+      <label for="login-senha">Senha</label>
+      <input id="login-senha" type="password" autocomplete="current-password" required>
+      <p id="login-erro" class="erro" role="alert"></p>
+      <button type="submit" class="btn primario">Entrar</button>
+      <button type="button" id="btn-esqueci" class="btn link">Esqueci a senha</button>
+    </form>
+  </section>
+
+  <div id="app" hidden>
+    <header class="topo">
+      <div class="topo-in">
+        <div>
+          <p class="eyebrow">Gastos da obra</p>
+          <h1 id="titulo-obra">Minha Casa</h1>
+        </div>
+        <span id="sync" class="sync"></span>
+      </div>
+    </header>
+    <p id="aviso-erro" class="aviso" role="alert" hidden></p>
+    <main id="view" class="view"></main>
+    <button id="fab" class="fab" type="button" aria-label="Lançar gasto">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+    </button>
+    <nav class="tabs" aria-label="Seções">
+      <a href="#inicio" data-tab="inicio"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Início</span></a>
+      <a href="#gastos" data-tab="gastos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span>Gastos</span></a>
+      <a href="#relatorio" data-tab="relatorio"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8zM14 3v5h5M9 17v-3M12 17v-6M15 17v-4"/></svg><span>Relatório</span></a>
+      <a href="#ajustes" data-tab="ajustes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span>Ajustes</span></a>
+    </nav>
+  </div>
+
+  <dialog id="dlg-gasto" class="sheet">
+    <form id="form-gasto" method="dialog" novalidate>
+      <div class="sheet-head">
+        <h2 id="dlg-titulo">Novo gasto</h2>
+        <button type="button" class="btn icone" data-fechar aria-label="Fechar">✕</button>
+      </div>
+      <label for="g-valor">Valor (R$)</label>
+      <input id="g-valor" class="input-valor" inputmode="decimal" autocomplete="off" placeholder="0,00" required>
+      <div class="linha2">
+        <div>
+          <label for="g-data">Data</label>
+          <input id="g-data" type="date" required>
+        </div>
+        <div>
+          <label for="g-fonte">Origem do dinheiro</label>
+          <select id="g-fonte"></select>
+        </div>
+      </div>
+      <label for="g-descricao">Descrição</label>
+      <input id="g-descricao" autocomplete="off" placeholder="Ex.: 40 sacos de cimento">
+      <label for="g-categoria">Categoria</label>
+      <select id="g-categoria"></select>
+      <label for="g-obs">Observação <span class="opcional">(opcional)</span></label>
+      <textarea id="g-obs" rows="2" placeholder="Loja, nota fiscal, forma de pagamento…"></textarea>
+      <p id="g-erro" class="erro" role="alert"></p>
+      <div class="sheet-acoes">
+        <button type="button" id="g-excluir" class="btn perigo" hidden>Excluir</button>
+        <button type="submit" class="btn primario">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

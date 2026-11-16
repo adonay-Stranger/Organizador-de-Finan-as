@@ -1,6 +1,6 @@
 // Service worker: guarda os arquivos do app para abrir sem internet.
 // Ao mudar algum arquivo do app, aumente a versão abaixo.
-const VERSAO = "minha-obra-v2";
+const VERSAO = "minha-obra-v3";
 const ARQUIVOS = [
   "./", "./index.html", "./styles.css", "./app.js", "./store.js", "./firebase-config.js",
   "./manifest.webmanifest", "./icons/icon.svg", "./icons/icon-192.png", "./icons/icon-180.png",

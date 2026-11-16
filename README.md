@@ -2,7 +2,8 @@
 
 App para celular que controla os gastos da construção da casa:
 
-- **Lançar gastos**: valor, data, descrição, categoria (fundação, elétrica, mão de obra…) e **de onde saiu o dinheiro** (poupança, financiamento, salário, FGTS…).
+- **Lançar gastos**: valor total, data, descrição e categoria (fundação, elétrica, mão de obra…).
+- **Pagamentos efetuados**: cada gasto pode ter um ou vários pagamentos (à vista, entrada mais parcelas…). Em cada pagamento você informa o valor, a data, **de onde saiu o dinheiro** (poupança, financiamento, salário, FGTS…) e **anexa o comprovante** (foto ou PDF). O app mostra o que está pago, o que foi pago em parte e o que ainda falta pagar.
 - **Meta do valor final**: barra de progresso com quanto já foi gasto e quanto falta.
 - **Origens do dinheiro com valor previsto** (opcional): por exemplo, financiamento de R$ 200.000. O app mostra quanto ainda sobra em cada origem.
 - **Relatório**: totais por categoria, por origem e por mês, além da lista completa de lançamentos. Dá para filtrar por período, salvar em PDF, baixar a planilha (abre no Excel e no Google Planilhas) ou compartilhar pelo WhatsApp.
@@ -75,6 +76,13 @@ No celular onde estão os dados, abra **Ajustes → Baixar backup** *antes* de f
 
 - **iPhone (Safari):** abra o link → botão **Compartilhar** → **Adicionar à Tela de Início**.
 - **Android (Chrome):** abra o link → menu **⋮** → **Instalar app** (ou **Adicionar à tela inicial**).
+
+## Comprovantes
+
+- Fotos são reduzidas automaticamente (cerca de 100 a 400 KB cada) e ficam guardadas no próprio banco de dados do Firebase. Não é preciso ativar o Firebase Storage, que exige plano pago.
+- PDFs podem ter até 700 KB. Se o PDF for maior, tire um print da tela do comprovante e anexe a imagem.
+- O plano gratuito do Firestore guarda 1 GB, o que dá para alguns milhares de comprovantes.
+- O backup em arquivo (Ajustes) inclui os comprovantes.
 
 ## Arquivos
 

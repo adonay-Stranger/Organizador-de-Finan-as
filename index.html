@@ -65,7 +65,7 @@
         <h2 id="dlg-titulo">Novo gasto</h2>
         <button type="button" class="btn icone" data-fechar aria-label="Fechar">✕</button>
       </div>
-      <label for="g-valor">Valor (R$)</label>
+      <label for="g-valor">Valor total do gasto (R$)</label>
       <input id="g-valor" class="input-valor" inputmode="decimal" autocomplete="off" placeholder="0,00" required>
       <div class="linha2">
         <div>
@@ -73,22 +73,43 @@
           <input id="g-data" type="date" required>
         </div>
         <div>
-          <label for="g-fonte">Origem do dinheiro</label>
-          <select id="g-fonte"></select>
+          <label for="g-categoria">Categoria</label>
+          <select id="g-categoria"></select>
         </div>
       </div>
       <label for="g-descricao">Descrição</label>
       <input id="g-descricao" autocomplete="off" placeholder="Ex.: 40 sacos de cimento">
-      <label for="g-categoria">Categoria</label>
-      <select id="g-categoria"></select>
       <label for="g-obs">Observação <span class="opcional">(opcional)</span></label>
-      <textarea id="g-obs" rows="2" placeholder="Loja, nota fiscal, forma de pagamento…"></textarea>
+      <textarea id="g-obs" rows="2" placeholder="Loja, fornecedor, nota fiscal…"></textarea>
+
+      <section class="pagamentos" aria-labelledby="pg-titulo">
+        <div class="pg-cab">
+          <h3 id="pg-titulo">Pagamentos efetuados</h3>
+          <p id="pg-resumo" class="pg-resumo"></p>
+        </div>
+        <ul id="pg-lista" class="pg-lista"></ul>
+        <button type="button" id="pg-add" class="btn pg-add">+ Adicionar pagamento</button>
+        <p class="ajuda">Se ainda não pagou nada, remova o pagamento com o ✕. O gasto fica como "a pagar".</p>
+      </section>
+
       <p id="g-erro" class="erro" role="alert"></p>
       <div class="sheet-acoes">
         <button type="button" id="g-excluir" class="btn perigo" hidden>Excluir</button>
         <button type="submit" class="btn primario">Salvar</button>
       </div>
     </form>
+  </dialog>
+
+  <dialog id="dlg-comp" class="visor" aria-labelledby="comp-nome">
+    <div class="visor-cab">
+      <span id="comp-nome" class="visor-nome"></span>
+      <button type="button" class="btn icone" data-fechar-comp aria-label="Fechar">✕</button>
+    </div>
+    <div id="comp-corpo" class="visor-corpo"></div>
+    <div class="visor-acoes">
+      <button type="button" id="comp-abrir" class="btn">Ampliar</button>
+      <button type="button" id="comp-baixar" class="btn">Baixar</button>
+    </div>
   </dialog>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>

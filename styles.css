@@ -360,3 +360,74 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent); outline
   .tabela tr { break-inside: avoid; }
   .relatorio h3 { break-after: avoid; }
 }
+
+/* ---------- situação dos gastos e pagamentos ---------- */
+:root { --warn: #a2620a; --warn-soft: #fbefd9; --ok-soft: #e1f1e8; }
+@media (prefers-color-scheme: dark) { :root { --warn: #f0b75a; --warn-soft: #3a2c14; --ok-soft: #173326; } }
+.selo { font-size: .7rem; font-weight: 700; border-radius: 999px; padding: 1px 8px; white-space: nowrap; }
+.selo.pago { color: var(--ok); background: var(--ok-soft); }
+.selo.parcial { color: var(--warn); background: var(--warn-soft); }
+.selo.aberto { color: var(--danger); background: var(--danger-soft); }
+.ic-clipe { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: -.12em; flex: none; }
+.gasto-valor .ic-clipe { color: var(--muted); margin-right: 4px; }
+.gasto-meta { overflow-wrap: anywhere; }
+
+.barra-meta { display: flex; }
+.barra-meta span { border-radius: 0; }
+.barra-meta .seg-pago { background: var(--accent); }
+.barra-meta .seg-apagar {
+  background: repeating-linear-gradient(135deg, var(--accent) 0 4px, transparent 4px 8px);
+  opacity: .55;
+}
+.barra-meta.estourou .seg-pago { background: var(--danger); }
+.legenda { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .88rem; }
+.legenda li { display: inline-flex; align-items: center; gap: 6px; }
+.legenda strong { font-family: var(--font-display); }
+.legenda i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.lg-pago { background: var(--accent); }
+.lg-apagar { background: repeating-linear-gradient(135deg, var(--accent) 0 3px, transparent 3px 6px); opacity: .7; border: 1px solid var(--accent); }
+a.mini { color: inherit; text-decoration: none; }
+.mini-sub { margin: 2px 0 0; font-size: .78rem; color: var(--muted); }
+
+.pagamentos { margin-top: 18px; padding-top: 14px; border-top: 1.5px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
+.pg-cab { display: flex; flex-direction: column; gap: 2px; }
+.pg-resumo { margin: 0; font-size: .85rem; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+.pg-resumo.pago { color: var(--ok); }
+.pg-resumo.parcial { color: var(--warn); }
+.pg-resumo.aberto, .pg-resumo.erro-txt { color: var(--danger); }
+.pg-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.pg { background: var(--bg); border-radius: 12px; padding: 4px 12px 12px; }
+.pg label { margin-top: 8px; }
+.pg-topo { display: flex; justify-content: space-between; align-items: center; }
+.pg-n { font: 700 .85rem var(--font-display); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.pg-comp { display: flex; align-items: center; gap: 8px; margin-top: 10px; min-width: 0; }
+.btn.anexar { min-height: 42px; border-style: dashed; font-size: .9rem; width: 100%; }
+.anexo {
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px;
+  min-height: 42px; padding: 8px 12px; border-radius: 10px;
+  border: 1.5px solid var(--ok); background: var(--ok-soft); color: var(--ink);
+  font: 600 .9rem var(--font-body); text-align: left; cursor: pointer;
+}
+.anexo .ic-clipe { color: var(--ok); }
+.anexo-nome { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.anexo small { color: var(--muted); font-weight: 500; flex: none; }
+.pg-add { border-style: dashed; }
+.sheet { overflow-y: auto; }
+
+.visor {
+  border: 0; padding: 0; width: min(94vw, 720px); max-height: 92vh;
+  background: var(--surface); color: var(--ink); border-radius: 16px;
+  display: none; flex-direction: column;
+}
+.visor[open] { display: flex; }
+.visor::backdrop { background: rgb(10 15 18 / .75); }
+.visor-cab { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 8px 8px 8px 16px; border-bottom: 1px solid var(--line); }
+.visor-nome { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.visor-corpo { overflow: auto; padding: 12px; display: grid; place-items: center; min-height: 160px; background: var(--bg); }
+.visor-corpo img { max-width: 100%; height: auto; display: block; border-radius: 6px; }
+.comp-pdf { display: flex; align-items: center; gap: 12px; padding: 20px; }
+.comp-pdf .ic-clipe { width: 32px; height: 32px; color: var(--muted); }
+.comp-pdf p { margin: 0; }
+.visor-acoes { display: flex; gap: 8px; padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); }
+.visor-acoes .btn { flex: 1; }
+.rel-resumo dd small { font: 500 .75rem var(--font-body); color: var(--muted); }
